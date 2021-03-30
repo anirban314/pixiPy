@@ -17,9 +17,9 @@ def getpixels(limit):
 		#Execute this if required no. of primes DOES NOT exist in cache file
 		else:
 			print("[FAILED]\nReached EOF: Generating missing primes...", end=' ')
-			missing = limit - len(primes)
-			last = primes[-1]
-			new_primes = getprimes(missing, last)
+			new_limit = limit - len(primes)
+			last_prime = primes[-1]
+			new_primes = getprimes(new_limit, last_prime)
 			primes.extend(new_primes)
 
 			print("[Success]\nAppending generated primes to cache file...", end=' ')
@@ -57,9 +57,9 @@ def writefile(primes, cpath, mode='w'):
 		file.writelines(sprimes)
 
 
-def getprimes(limit, last=1):
-	primes = [2] if last==1 else []
-	number = last + 2
+def getprimes(limit, start=1):
+	primes = [2] if start==1 else []
+	number = start + 2
 	
 	while len(primes) < limit:
 		if isprime(number):
@@ -70,7 +70,8 @@ def getprimes(limit, last=1):
 
 def isprime(number):
 	for d in range(3, int(math.sqrt(number))+1, 2):
-		if number % d == 0 : return False
+		if number % d == 0:
+			return False
 	return True
 
 
