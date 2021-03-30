@@ -75,7 +75,7 @@ def isprime(number):
 
 
 if __name__ == '__main__':
-	print(len(getpixels(int(input('Standalone Mode - Enter number of primes to generate: ')))))
+	getpixels(int(input('Standalone Mode - Enter number of primes to generate: ')))
 
 
 '''
