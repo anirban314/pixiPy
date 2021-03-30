@@ -2,7 +2,7 @@ import os
 import math
 
 def getpixels(limit):
-	cpath = 'files/primes.cache'
+	cpath = 'cache/primes.txt'
 
 	#Execute this if cache file EXISTS
 	if os.path.isfile(cpath):
