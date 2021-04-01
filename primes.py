@@ -1,12 +1,12 @@
 import os
 import math
 
-def getpixels(limit):
+def getpixels(limit, v=False):
 	cpath = 'cache/primes.txt'
 
 	#Execute this if cache file EXISTS
 	if os.path.isfile(cpath):
-		print("Cache file found: Reading primes from cache...")
+		if v: print("Cache file found: Reading primes from cache...")
 		primes = readfile(limit, cpath)
 
 		#Execute this if required no. of primes EXISTS in cache file
@@ -15,22 +15,22 @@ def getpixels(limit):
 		
 		#Execute this if required no. of primes DOES NOT exist in cache file
 		else:
-			print("Reached EOF: Generating missing primes...")
+			if v: print("Reached EOF: Generating missing primes...")
 			new_limit = limit - len(primes)
 			last_prime = primes[-1]
 			new_primes = getprimes(new_limit, last_prime)
 			primes.extend(new_primes)
 
-			print("Appending generated primes to cache file...")
+			if v: print("Appending generated primes to cache file...")
 			writefile(new_primes, cpath, mode='a')
 			return primes
 	
 	#Execute this if cache file DOES NOT exist
 	else:
-		print("Cache file missing: Generating primes...")
+		if v: print("Cache file missing: Generating primes...")
 		primes = getprimes(limit)
 
-		print("Writing generated primes to new cache file...")
+		if v: print("Writing generated primes to new cache file...")
 		writefile(primes, cpath)
 
 		return primes
@@ -72,7 +72,7 @@ def isprime(number):
 
 
 if __name__ == '__main__':
-	getpixels(int(input('Standalone Mode - Enter number of primes to generate: ')))
+	getpixels(int(input('Standalone Mode - Enter number of primes to generate: ')), v=True)
 
 
 '''
