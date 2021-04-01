@@ -6,37 +6,33 @@ def getpixels(limit):
 
 	#Execute this if cache file EXISTS
 	if os.path.isfile(cpath):
-		print("Cache file found: Reading primes from cache...", end=' ')
+		print("Cache file found: Reading primes from cache...")
 		primes = readfile(limit, cpath)
 
 		#Execute this if required no. of primes EXISTS in cache file
 		if len(primes) == limit:
-			print("[Success]")
 			return primes
 		
 		#Execute this if required no. of primes DOES NOT exist in cache file
 		else:
-			print("[FAILED]\nReached EOF: Generating missing primes...", end=' ')
+			print("Reached EOF: Generating missing primes...")
 			new_limit = limit - len(primes)
 			last_prime = primes[-1]
 			new_primes = getprimes(new_limit, last_prime)
 			primes.extend(new_primes)
 
-			print("[Success]\nAppending generated primes to cache file...", end=' ')
+			print("Appending generated primes to cache file...")
 			writefile(new_primes, cpath, mode='a')
-			
-			print("[Success]")
 			return primes
 	
 	#Execute this if cache file DOES NOT exist
 	else:
-		print("Cache file missing: Generating primes...", end=' ')
+		print("Cache file missing: Generating primes...")
 		primes = getprimes(limit)
 
-		print("[Success]\nWriting generated primes to new cache file...", end=' ')
+		print("Writing generated primes to new cache file...")
 		writefile(primes, cpath)
 
-		print("[Success]")
 		return primes
 
 
