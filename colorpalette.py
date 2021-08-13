@@ -25,6 +25,8 @@ def main():
 	bar_width = img_width / n_colors
 	bar_coord = np.arange(0, img_width, bar_width)
 
+	plt.figure()
+	plt.imshow(img_array)
 	plt.bar(
 		bar_coord,
 		bottom = img_height + bar_height * 0.2,
@@ -34,9 +36,9 @@ def main():
 		align = 'edge'
 	)
 	plt.axis([0, img_width, img_height + bar_height * 1.2, 0])
-
-	plt.imshow(img_array)
 	plt.axis('off')
+	
+	plt.subplots_adjust(left=0, right=1, bottom=0.04, top=0.96)
 	plt.show()
 
 
@@ -49,10 +51,8 @@ def getparams():
 		print(f"Using DEFAULT image {img_path}")
 
 	print('Provide the following parameters, or press ENTER to use DEFAULTS...')
-
 	img_size = input('  Limit image size on either axis to (default, keep original)\t: ')
 	img_size = False if not img_size else int(img_size)
-
 	n_colors = input('  Number of colors to generate in palette (default, 6 colors)\t: ')
 	n_colors = 6 if not n_colors else int(n_colors)
 
